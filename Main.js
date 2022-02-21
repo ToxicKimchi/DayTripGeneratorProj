@@ -12,9 +12,16 @@
 (5 points): As a developer, I want all of my functions to have a Single Responsibility. Remember, each function should do just one thing!
 */
 
-function Randomizer(toBeRandom) {
+function Randomizer(toBeRandom, currentSelection) {
     let upperInt = toBeRandom.length
-    return (toBeRandom[Math.floor(Math.random() * upperInt)]);
+    let randomSelection = toBeRandom[Math.floor(Math.random() * upperInt)]
+    if (randomSelection == currentSelection){
+        return(Randomizer(toBeRandom, currentSelection))
+    }
+    else{
+        return(randomSelection)
+    }
+
 }
 
 let destinations = ['Cuba', 'Jamaica', 'Hawaii', 'Britain', 'Miami, Florida']
@@ -27,9 +34,6 @@ function reRoll(toBeRandom) {
 
 }
 
-function selectDestination(changeDestiny, selection) {
-    prompt(`Please enter the number corresponding to the entry that you would like to select, or press ${destinations.length + 1} to select randomly.`)
-}
 
 function dayTripChange(array, currentSelection) {
     let selectionLength = "Please enter the number corresponding to the entry that you would like to change to:";
@@ -40,15 +44,14 @@ function dayTripChange(array, currentSelection) {
 
     let newSelection = prompt(selectionLength)
     if (newSelection == (parseInt(array.length) + 1)){
-    document.write("Randomizing")
+        return(Randomizer(array, currentSelection))
     }
     else if (newSelection <= (parseInt(array.length))){
         console.log(newSelection)
         return(array[(parseInt(newSelection) - 1)])
     }
     else{
-    console.log(newSelection)
-    console.log((parseInt(array.length) + 1))
+        alert("You did not enter a pre-ordained command, returning to main menu")
     }
 }
 
