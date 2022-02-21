@@ -52,6 +52,7 @@ function dayTripChange(array, currentSelection) {
     }
     else{
         alert("You did not enter a pre-ordained command, returning to main menu")
+        return(currentSelection)
     }
 }
 
