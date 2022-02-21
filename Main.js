@@ -1,5 +1,9 @@
-"Use Strict";
-
+//////////////////////////////////////////////////////////////////////////////////////////////////
+//Day Trip Generator (Main)
+//By: Garett Bare
+//21 Feb 2022
+//
+//purpose, fulfill the below objectives
 /*
 (5 points): As a developer, I want to make at least three commits with descriptive messages.
 (5 points): As a user, I want a destination to be randomly selected for my day trip.
@@ -11,7 +15,13 @@
 (10 points): As a user, I want to display my completed trip in the console.
 (5 points): As a developer, I want all of my functions to have a Single Responsibility. Remember, each function should do just one thing!
 */
+/////////////////////////////////////////////////////////////////////////////////////////////////////
 
+
+"Use Strict";
+
+
+//This function is meant to allow randomizing of the current selection with an additional functionality of not allowing the current selection to be immediately selected again
 function Randomizer(toBeRandom, currentSelection) {
     let upperInt = toBeRandom.length
     let randomSelection = toBeRandom[Math.floor(Math.random() * upperInt)]
@@ -21,20 +31,15 @@ function Randomizer(toBeRandom, currentSelection) {
     else{
         return(randomSelection)
     }
-
 }
 
+//Variable declaration for all the required parameters.
 let destinations = ['Cuba', 'Jamaica', 'Hawaii', 'Britain', 'Miami, Florida']
 let restaurants = ['Italian', 'Mongolian', 'Greek', 'Mcdonalds', 'Pizza']
 let transport = ['Bus', 'Rent a car', 'Walk', 'Train']
 let entertainment = ['Hula', 'Tours', 'Burlesque', 'Feasts']
 
-
-function reRoll(toBeRandom) {
-
-}
-
-
+//Function that will parse through the array that is being requested to be changed, and will populate the subsequent query with the correct length of the array/options
 function dayTripChange(array, currentSelection) {
     let selectionLength = "Please enter the number corresponding to the entry that you would like to change to:";
     for (i in array){
@@ -56,13 +61,15 @@ function dayTripChange(array, currentSelection) {
     }
 }
 
-
+//uses the Randomizer function to select a random entry from the corresponding array.
 let dtDestination = Randomizer(destinations)
 let dtRestaurant = Randomizer(restaurants)
 let dtTransport = Randomizer(transport)
 let dtEntertainment = Randomizer(entertainment)
+//used for the while loop, will only be turned true if they answer yes, or select cancel.
 let acceptance = false;
 
+//Function used as a main menu. Will query if the provided results are acceptable, or provide information on how to change them. 
 function dayTripDisplay() {
     switch (prompt(`1. Destination = ${dtDestination}\n2. Restaurant = ${dtRestaurant}\n3. Transportation = ${dtTransport}\n4. Entertainment = ${dtEntertainment}\nIf you are satisfied with these selections please type (Y)es\nIf you would like to edit an aspect pleast type the corresponding Number.`).toLowerCase()) {
         case 'yes':
@@ -91,6 +98,7 @@ function dayTripDisplay() {
     }
 }
 
+//Will continue to re-display the dayTripDisplay/Main Menu until you either select cancel, or you input one of the Acceptance entries. 
 while (acceptance == false){
     dayTripDisplay()
 }
