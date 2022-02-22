@@ -76,30 +76,30 @@ function dayTripDisplay() {
         case 'y':
             alert(`Final:\nDestination = ${dtDestination}\nRestaurant = ${dtRestaurant}\nTransportation = ${dtTransport}\nEntertainment = ${dtEntertainment}`)
             console.log(`Final:\nDestination = ${dtDestination}\nRestaurant = ${dtRestaurant}\nTransportation = ${dtTransport}\nEntertainment = ${dtEntertainment}`)
-            return (acceptance = true)
+            return (true)
         case '1':
             dtDestination = dayTripChange(destinations, dtDestination);
-            break;
+            return (false)
         case '2':
             dtRestaurant = dayTripChange(restaurants, dtRestaurant);
-            break;
+            return (false)
         case '3':
             dtTransport = dayTripChange(transport, dtTransport);
-            break;
+            return (false)
         case '4':
             dtEntertainment = dayTripChange(entertainment, dtEntertainment);
-            break;
+            return (false)
         case null:
-            return ( acceptance = true)
+            return (true)
         default:
             console.log()
             alert("Please input one of the provided entries")
-            break;
+            return (false)
     }
 }
 
 //Will continue to re-display the dayTripDisplay/Main Menu until you either select cancel, or you input one of the Acceptance entries. 
 while (acceptance == false){
-    dayTripDisplay()
+    acceptance = dayTripDisplay()
 }
 
